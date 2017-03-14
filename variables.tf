@@ -1,3 +1,8 @@
+variable "name" {
+  description = "Subnet name to use in resource names interpolations"
+  default     = "private"
+}
+
 variable "vpc_id" {
   description = "Create the private subnets in this VPC"
 }

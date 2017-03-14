@@ -7,6 +7,7 @@ A terraform module to create private subnets in an AWS VPC
 Module Input Variables
 ----------------------
 
+- `name` - Subnet name to interpolate in resource names (defaults to 'private')
 - `vpc_id` - VPC ID to create the private subnets in
 - `vpc_name` - VPC name to interpolate in resource names
 - `subnets` - list of private subnet CIDRs

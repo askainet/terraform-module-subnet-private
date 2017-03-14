@@ -4,13 +4,13 @@ resource "aws_subnet" "private" {
   cidr_block              = "${var.subnets[count.index]}"
   availability_zone       = "${element(var.azs, count.index)}"
   map_public_ip_on_launch = false
-  tags                    = "${merge(var.tags, map("Name", format("%s.subnet-private.%s", var.vpc_name, element(var.azs, count.index))))}"
+  tags                    = "${merge(var.tags, map("Name", format("%s.subnet-%s.%s", var.vpc_name, var.name, element(var.azs, count.index))))}"
 }
 
 resource "aws_route_table" "private" {
   count  = "${length(var.subnets)}"
   vpc_id = "${var.vpc_id}"
-  tags   = "${merge(var.tags, map("Name", format("%s.rt-private.%s", var.vpc_name, element(var.azs, count.index))))}"
+  tags   = "${merge(var.tags, map("Name", format("%s.rt-%s.%s", var.vpc_name, var.name, element(var.azs, count.index))))}"
 }
 
 resource "aws_route_table_association" "private" {
